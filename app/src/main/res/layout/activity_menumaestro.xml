@@ -63,7 +63,8 @@
         android:layout_height="158dp"
         app:srcCompat="@drawable/fototio"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-30dp" />
+        tools:layout_editor_absoluteY="-30dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
