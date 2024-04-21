@@ -32,13 +32,40 @@ public class loginalumno extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString();
                 String password = ediTextPassword.getText().toString();
-                if (databaseHelper.checkUser(email,password)) {
-                    Toast.makeText(loginalumno.this, "Bienvenido", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(loginalumno.this, "Correo o usuario incorrectos", Toast.LENGTH_SHORT).show();
+
+                if(!databaseHelper.checkUser(email,password)){
+                    if(databaseHelper.addUser(email, password)){
+                        Toast.makeText(loginalumno.this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                        buttonLogin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(loginalumno.this, menualumno.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    else{
+                        Toast.makeText(loginalumno.this, "Error al registrar", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if(databaseHelper.checkUser(email, password)){
+                        Toast.makeText(loginalumno.this, "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                        buttonLogin.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(loginalumno.this, menualumno.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    else {
+                        Toast.makeText(loginalumno.this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+
+
 
     }
 }
