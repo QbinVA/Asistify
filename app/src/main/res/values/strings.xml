@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">asistify</string>
+    <string name="mostrar_di_logo">Mostrar Diálogo</string>
+    <string name="unirse_a_una_clase">Unirse a una clase</string>
+    <string name="unirse_di_logo" />
+    <string name="unirse" />
 </resources>
