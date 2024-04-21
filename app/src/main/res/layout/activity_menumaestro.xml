@@ -16,8 +16,9 @@
         android:background="#00322626"
         android:tint="#B50C0C0C"
         app:srcCompat="@drawable/fofo"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-10dp" />
+        tools:ignore="ContentDescription,MissingConstraints,UseAppTint,VisualLintBounds,ImageContrastCheck"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageView
         android:id="@+id/imageView12"
@@ -26,42 +27,31 @@
         android:tint="#090A0C"
         app:srcCompat="@drawable/kbeson"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-100dp" />
-
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.Material3.Button.TonalButton.Icon"
-        android:layout_width="310dp"
-        android:layout_height="70dp"
-        android:background="#2E1A51"
-        android:backgroundTint="#3D2567"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text=" "
-        android:textAlignment="center"
-        android:textColorHighlight="#392263"
-        android:textColorLink="#2C1850"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="197dp"
-        tools:text="Crear Nueva Clase +" />
+        tools:layout_editor_absoluteY="-100dp"
+        tools:ignore="ContentDescription,MissingConstraints,UseAppTint,VisualLintBounds" />
 
     <TextView
         android:id="@+id/textView"
         style="@style/Widget.AppCompat.TextView"
         android:layout_width="278dp"
         android:layout_height="64dp"
+        android:layout_marginTop="56dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="CLASES"
         android:textColor="#D8D4D4"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="133dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="HardcodedText,MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="98dp"
         android:layout_height="158dp"
         app:srcCompat="@drawable/fototio"
+        tools:ignore="ContentDescription,MissingConstraints,VisualLintBounds"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-30dp"
         tools:ignore="MissingConstraints" />
@@ -70,10 +60,24 @@
         android:id="@+id/textView2"
         android:layout_width="118dp"
         android:layout_height="33dp"
+        android:layout_marginTop="32dp"
         android:text="Maestro"
         android:textColor="#FBF1F1"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="33dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="98dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="211dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/button_styles"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Crear Nueva Clase +"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText,MissingConstraints,TextSizeCheck,TextSizeCheck"
+        tools:layout_editor_absoluteX="111dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
