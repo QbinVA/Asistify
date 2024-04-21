@@ -4,6 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menumaestro">
+    android:background="#101217"
+    android:visibility="visible"
+    tools:context=".menumaestro"
+    tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="413dp"
+        android:layout_height="849dp"
+        android:background="#00322626"
+        android:tint="#B50C0C0C"
+        app:srcCompat="@drawable/fofo"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-10dp" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="#090A0C"
+        app:srcCompat="@drawable/kbeson"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-100dp" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.Material3.Button.TonalButton.Icon"
+        android:layout_width="310dp"
+        android:layout_height="70dp"
+        android:background="#2E1A51"
+        android:backgroundTint="#3D2567"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text=" "
+        android:textAlignment="center"
+        android:textColorHighlight="#392263"
+        android:textColorLink="#2C1850"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="197dp"
+        tools:text="Crear Nueva Clase +" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="278dp"
+        android:layout_height="64dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="CLASES"
+        android:textColor="#D8D4D4"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="98dp"
+        android:layout_height="158dp"
+        app:srcCompat="@drawable/fototio"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-30dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="118dp"
+        android:layout_height="33dp"
+        android:text="Maestro"
+        android:textColor="#FBF1F1"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="33dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
