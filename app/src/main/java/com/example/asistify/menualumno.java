@@ -10,12 +10,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
+import android.widget.ImageButton;
+
 public class menualumno extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menualumno);
+
+        ImageButton imageButton = findViewById(R.id.imgbtn);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Crea y muestra un diálogo de alerta
+                AlertDialog.Builder builder = new AlertDialog.Builder(menualumno.this);
+                builder.setMessage("Haz hecho clic en el botón de imagen")
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // Cierra el diálogo si se hace clic en Aceptar
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         Button btnUnirse = findViewById(R.id.btnUnirse);
 
