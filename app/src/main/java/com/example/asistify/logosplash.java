@@ -16,7 +16,7 @@ public class logosplash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(logosplash.this, MainActivity.class);
+                Intent intent = new Intent(logosplash.this, loginalumno.class);
                 startActivity(intent);
                 finish();
             }
