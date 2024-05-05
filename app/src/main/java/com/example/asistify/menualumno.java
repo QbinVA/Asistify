@@ -3,14 +3,22 @@ package com.example.asistify;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class menualumno extends AppCompatActivity {
 
@@ -42,45 +50,52 @@ public class menualumno extends AppCompatActivity {
         btnUnirse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Crear y mostrar el menú emergente
-                PopupMenu popupMenu = new PopupMenu(menualumno.this, btnUnirse);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        //Manejar los clics en las opciones del menu
-                        if (item.getItemId() == R.id.option_dialog) {//Mostrar el dialogo emergente cuando se hace clic en esta opcion
-                            showAlertDialog();
-                            return true;
-                        }
-                        else {
-                            return false;
-                        }
-                    }
-                });
-                popupMenu.show();
+                showBottomDialog();
             }
         });
+
+
+
     }
 
-    //Metodo para mostrar el dialogo emergente
-    private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alerta")
-                .setMessage("Esta funcion no ha sido terminada.")
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Accion cuando hace click en Aceptar
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Acciom cuando se hace clic en Cancelar
-                    }
-                })
-                .show();
+    private void showBottomDialog(){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheet_layout);
+
+        LinearLayout unirmeClase = dialog.findViewById(R.id.UnirClase);
+        LinearLayout crearClase = dialog.findViewById(R.id.CrearClase);
+        LinearLayout cancelButton = dialog.findViewById(R.id.cancelButton);
+
+        unirmeClase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(menualumno.this, "Boton para unirme a una clase", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        crearClase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Toast.makeText(menualumno.this, "Boton para crear una clase", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
 }
