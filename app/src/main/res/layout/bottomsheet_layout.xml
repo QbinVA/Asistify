@@ -5,40 +5,6 @@
     android:orientation="vertical"
     android:background="@drawable/dialog_bkg">
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_horizontal_rule_24"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center|top"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Crear"
-            android:textSize="25sp"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="5dp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_close_24"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="8dp"
-            android:id="@+id/cancelButton"/>
-
-
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_class_24"/>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
