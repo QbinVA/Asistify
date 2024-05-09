@@ -2,6 +2,7 @@ package com.example.asistify;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -74,7 +75,8 @@ public class menualumno extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(menualumno.this, "Boton para unirme a una clase", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(menualumno.this, unirmeAclase.class);
+                startActivity(intent);
             }
         });
 
@@ -82,7 +84,8 @@ public class menualumno extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(menualumno.this, "Boton para crear una clase", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(menualumno.this, crearUclase.class);
+                startActivity(intent);
             }
         });
 

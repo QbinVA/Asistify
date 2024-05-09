@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loginalumno"
     android:background="@drawable/fondob"
-    >
+    tools:context=".loginalumno">
 
     <EditText
         android:id="@+id/edittxtemail"
@@ -82,6 +81,7 @@
         android:layout_marginStart="95dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="95dp"
+        android:layout_gravity="center"
         android:background="@drawable/button_registro"
         android:text="¿Eres nuevo? REGISTRATE"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="136dp"
+        android:layout_gravity="center"
         android:fontFamily="sans-serif-smallcaps"
         android:text="La aplicación para la asistencia en linea"
         android:textSize="16sp"
@@ -109,12 +110,11 @@
         android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_marginTop="95dp"
-        android:layout_marginBottom="4dp"
+        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/buho" />
 
     <TextView
