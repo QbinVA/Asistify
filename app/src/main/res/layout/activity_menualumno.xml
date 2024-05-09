@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondob"
+    android:background="@drawable/fondo"
     tools:context=".menualumno">
 
     <Button
@@ -17,7 +17,8 @@
         android:background="@drawable/botonunirse"
         android:fontFamily="sans-serif-smallcaps"
         android:text="+"
-        android:textSize="26sp"
+        android:backgroundTint="#101217"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
