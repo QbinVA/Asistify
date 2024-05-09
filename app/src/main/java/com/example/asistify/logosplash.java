@@ -36,7 +36,7 @@ public class logosplash extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2300);
+        }, 1100);
 
 
     }
