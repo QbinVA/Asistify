@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="@drawable/fondob"
-=======
     android:background="@drawable/fondo"
->>>>>>> bb99835845ca2e27ed56386a4834c362f8a52662
     tools:context=".loginalumno">
 
     <EditText
@@ -84,14 +80,6 @@
         android:textStyle="bold"
         />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="130dp"
-        app:layout_constraintBottom_toTopOf="@+id/edittxtemail"
-=======
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -107,25 +95,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
-
-<<<<<<< HEAD
-    <Button
-        android:id="@+id/btnregistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="95dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_registro"
-        android:text="¿Eres nuevo? REGISTRATE"
-=======
->>>>>>> bb99835845ca2e27ed56386a4834c362f8a52662
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintTop_toBottomOf="@+id/btnregistrar" />
 
 
     <TextView
@@ -153,12 +122,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/buho" />
-=======
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/iinicio" />
->>>>>>> bb99835845ca2e27ed56386a4834c362f8a52662
 
     <TextView
         android:id="@+id/textView4"
