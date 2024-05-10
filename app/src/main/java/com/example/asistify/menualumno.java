@@ -1,6 +1,7 @@
 package com.example.asistify;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,10 +11,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 
-
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -62,6 +62,8 @@ public class menualumno extends AppCompatActivity {
                 showBottomDialog();
             }
         });
+
+
     }
 
     private void showBottomDialog(){
@@ -73,7 +75,23 @@ public class menualumno extends AppCompatActivity {
         LinearLayout unirmeClase = dialog.findViewById(R.id.UnirClase);
         LinearLayout crearClase = dialog.findViewById(R.id.CrearClase);
 
+        unirmeClase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(menualumno.this, unirmeAclase.class);
+                startActivity(intent);
+            }
+        });
 
+        crearClase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(menualumno.this, crearUclase.class);
+                startActivity(intent);
+            }
+        });
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
