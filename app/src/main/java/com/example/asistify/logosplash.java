@@ -1,18 +1,14 @@
 package com.example.asistify;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class logosplash extends AppCompatActivity {
 
@@ -36,7 +32,7 @@ public class logosplash extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1100);
+        }, 900);
 
 
     }
