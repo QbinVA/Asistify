@@ -90,6 +90,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:text="INICIAR SESION"
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/edittxtemail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,10 +103,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="90dp"
         android:layout_gravity="center"
         android:fontFamily="sans-serif-smallcaps"
         android:text="La aplicación para la asistencia en linea"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,16 +116,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="95dp"
+        android:layout_width="176dp"
+        android:layout_height="139dp"
         android:layout_gravity="center"
+        android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/iinicio" />
 
     <TextView

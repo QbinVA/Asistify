@@ -3,12 +3,12 @@
     <translate
         android:fromYDelta="-70%"
         android:toYDelta="0%"
-        android:duration="800"
+        android:duration="700"
         ></translate>
 
     <alpha
         android:fromAlpha="0.01"
         android:toAlpha="1.0"
-        android:duration="800"
+        android:duration="700"
         ></alpha>
 </set>

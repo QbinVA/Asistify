@@ -1,8 +1,6 @@
 package com.example.asistify;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,17 +8,24 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 
 public class menualumno extends AppCompatActivity {
 
+    FloatingActionButton fab;
+    DrawerLayout drawerLayout;
+    BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -28,38 +33,35 @@ public class menualumno extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menualumno);
 
-        Button btnUnirse = findViewById(R.id.btnUnirse);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        fab = findViewById(R.id.fab);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView= findViewById(R.id.nav_view);
+        Toolbar toolbar;
+        toolbar = findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+        ActionBarDrawerToggle toggle;
+        toggle = new ActionBarDrawerToggle(this,
+                drawerLayout,
+                toolbar,
+                R.string.open_nav,
+                R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new clases_menu()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
 
 
-        btnUnirse.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 showBottomDialog();
             }
         });
-
-
-
-        ImageButton imageButton = findViewById(R.id.imgbtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea y muestra un diálogo de alerta
-                AlertDialog.Builder builder = new AlertDialog.Builder(menualumno.this);
-                builder.setMessage("Haz hecho clic en el botón de imagen")
-                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // Cierra el diálogo si se hace clic en Aceptar
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-
-
-
     }
 
     private void showBottomDialog(){
@@ -71,23 +73,7 @@ public class menualumno extends AppCompatActivity {
         LinearLayout unirmeClase = dialog.findViewById(R.id.UnirClase);
         LinearLayout crearClase = dialog.findViewById(R.id.CrearClase);
 
-        unirmeClase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Intent intent = new Intent(menualumno.this, unirmeAclase.class);
-                startActivity(intent);
-            }
-        });
 
-        crearClase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Intent intent = new Intent(menualumno.this, crearUclase.class);
-                startActivity(intent);
-            }
-        });
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
