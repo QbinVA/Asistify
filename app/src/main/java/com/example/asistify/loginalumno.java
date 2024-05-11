@@ -48,7 +48,7 @@ public class loginalumno extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(loginalumno.this, "Uusario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginalumno.this, "Usario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
