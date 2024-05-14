@@ -12,7 +12,6 @@
     tools:context=".menualumno">
 
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,14 +27,16 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lavanda"
+                android:background="@color/verdecito"
                 android:elevation="4dp"
                 android:popupTheme="@style/Theme.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
         </FrameLayout>
         
     </LinearLayout>
-    
+
     <com.google.android.material.navigation.NavigationView
         android:layout_width="220dp"
         android:layout_height="match_parent"

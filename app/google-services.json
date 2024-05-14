@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "223386198319",
+    "project_id": "asistify-b2add",
+    "storage_bucket": "asistify-b2add.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223386198319:android:bac99d904c9e681102c1da",
+        "android_client_info": {
+          "package_name": "com.example.asistify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbLaAPWJzhmY3L6ZWYY8nHuKyv4iFNJWw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

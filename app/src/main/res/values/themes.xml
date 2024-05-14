@@ -2,6 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Asistify" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/lavanda</item>
+        <item name="colorPrimaryVariant">@color/lavanda</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/hueso</item>
+        <item name="colorSecondaryVariant">@color/hueso</item>
+        <item name="colorOnSecondary">@color/black</item>
+
     </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
