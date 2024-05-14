@@ -15,9 +15,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+
 
 
 public class menualumno extends AppCompatActivity {
@@ -25,6 +28,7 @@ public class menualumno extends AppCompatActivity {
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
 
+    private AppBarConfiguration mAppBarConfiguration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,9 @@ public class menualumno extends AppCompatActivity {
             }
         });
 
-
     }
+
+
 
     private void showBottomDialog(){
 
