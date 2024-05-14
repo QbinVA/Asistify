@@ -55,9 +55,10 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="16dp"
-            app:rippleColor="@color/hueso"
-            android:outlineAmbientShadowColor="@color/black"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="@color/black"
+            android:backgroundTint="#fdfaeb"
+            />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
