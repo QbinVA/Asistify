@@ -16,11 +16,6 @@
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/NoActionBar" />
-        <activity
             android:name=".crearUclase"
             android:exported="false" />
         <activity
@@ -34,6 +29,12 @@
             android:exported="false" />
         <activity
             android:name=".loginalumno"
+            android:exported="false" />
+        <activity
+            android:name=".signupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".loginActivity"
             android:exported="false" />
         <activity
             android:name=".logosplash"
