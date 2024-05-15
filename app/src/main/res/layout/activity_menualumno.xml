@@ -27,7 +27,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/verdecito"
+                android:background="@color/lavanda"
                 android:elevation="4dp"
                 android:popupTheme="@style/Theme.AppCompat.Light"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -43,7 +43,10 @@
         android:id="@+id/nav_view"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"/>
+        android:backgroundTint="@color/hueso"
+        app:menu="@menu/nav_menu"
+        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/black"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
@@ -57,9 +60,8 @@
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="16dp"
             app:srcCompat="@android:drawable/ic_input_add"
-            app:tint="@color/black"
-            android:backgroundTint="#fdfaeb"
-            />
+            app:tint="@color/hueso"
+            android:backgroundTint="@color/lavanda" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
