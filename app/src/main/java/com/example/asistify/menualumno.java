@@ -111,7 +111,7 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         unirmeClase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(menualumno.this, unirmeAclase.class);
+                Intent intent = new Intent(menualumno.this, IniciarClase.class);
                 startActivity(intent);
             }
         });
@@ -119,7 +119,7 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         crearClase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(menualumno.this, crearUclase.class);
+                Intent intent = new Intent(menualumno.this, clasesRegistro.class);
                 startActivity(intent);
             }
         });

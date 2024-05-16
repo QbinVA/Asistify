@@ -3,27 +3,29 @@ package com.example.asistify;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+public class clasesRegistro extends AppCompatActivity {
 
-public class unirmeAclase extends AppCompatActivity {
-
-    FloatingActionButton back = findViewById(R.id.back);
-
-
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unirme_aclase);
+        setContentView(R.layout.activity_clases_registro);
+
+        back = findViewById(R.id.back);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unirmeAclase.this, menualumno.class);
+                Intent intent = new Intent(clasesRegistro.this, menualumno.class);
                 startActivity(intent);
             }
         });
+
+
     }
 }

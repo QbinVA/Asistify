@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/profilebkg"
-    tools:context=".crearUclase">
+    android:orientation="vertical"
+    tools:context=".clasesRegistro">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:padding="8dp"
-        android:textColor="@color/lavanda"
-        android:textSize="18sp" />
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,9 +75,9 @@
                 android:drawableLeft="@drawable/baseline_face_24"
                 android:drawablePadding="8dp"
                 android:hint="Nombre del docente"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/nombre_clase"
@@ -64,9 +88,9 @@
                 android:drawableLeft="@drawable/baseline_assignment_ind_24"
                 android:drawablePadding="8dp"
                 android:hint="Nombre de la clase"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/materia"
@@ -77,9 +101,9 @@
                 android:drawableLeft="@drawable/baseline_class_24"
                 android:drawablePadding="8dp"
                 android:hint="Materia"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/id_crearClase"
@@ -90,9 +114,9 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:hint="Código de la clase"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,7 +126,6 @@
                 android:padding="8dp"
                 android:textColor="@color/lavanda"
                 android:textSize="18sp" />
-
 
 
             <Button
@@ -116,21 +139,37 @@
                 android:textSize="18sp" />
 
 
-
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left | bottom"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="48dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/baseline_arrow_back_ios_new_24"
         android:backgroundTint="@color/lavanda"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/baseline_arrow_back_ios_new_24"
-        app:tint="@color/hueso" />
+        app:tint="@color/hueso"
+        android:elevation="20dp"/>
+
 
 </LinearLayout>
