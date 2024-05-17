@@ -1,86 +1,91 @@
 package com.example.asistify;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
-import android.widget.ImageButton;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-public class menualumno extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
+
+public class menualumno extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menualumno);
 
-        ImageButton imageButton = findViewById(R.id.imgbtn);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea y muestra un diálogo de alerta
-                AlertDialog.Builder builder = new AlertDialog.Builder(menualumno.this);
-                builder.setMessage("Haz hecho clic en el botón de imagen")
-                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // Cierra el diálogo si se hace clic en Aceptar
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Button btnUnirse = findViewById(R.id.btnUnirse);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        btnUnirse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Crear y mostrar el menú emergente
-                PopupMenu popupMenu = new PopupMenu(menualumno.this, btnUnirse);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        //Manejar los clics en las opciones del menu
-                        if (item.getItemId() == R.id.option_dialog) {//Mostrar el dialogo emergente cuando se hace clic en esta opcion
-                            showAlertDialog();
-                            return true;
-                        }
-                        else {
-                            return false;
-                        }
-                    }
-                });
-                popupMenu.show();
-            }
-        });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
+                R.string.close_nav);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
     }
 
-    //Metodo para mostrar el dialogo emergente
-    private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alerta")
-                .setMessage("Esta funcion no ha sido terminada.")
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Accion cuando hace click en Aceptar
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Acciom cuando se hace clic en Cancelar
-                    }
-                })
-                .show();
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                break;
+
+            case R.id.nav_settings:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
+                break;
+
+            case R.id.nav_share:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShareFragment()).commit();
+                break;
+
+            case R.id.nav_about:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                break;
+
+            case R.id.nav_logout:
+
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+
     }
 
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+
+    }
 }
