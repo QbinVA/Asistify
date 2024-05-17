@@ -3,4 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#8692f7</color>
+=======
+    <color name="hueso">#fdfaeb</color>
+    <color name="lavanda">#8692f7</color>
+    <color name="verdecito">#92FFC0</color>
+    <color name="naranja">#EF8E39</color>
+    <color name="cafe">#68421C</color>
+    <color name="gris">#ABB2B9</color>
+    <color name="green">#50c878</color>
+>>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
 </resources>

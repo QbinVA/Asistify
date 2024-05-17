@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#101017"
-    tools:context=".logosplash">
+    tools:context=".logosplash"
+    android:background="@drawable/fondo"
+    >
+
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgview3"
         android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/buho" />
+        app:srcCompat="@drawable/buhonegro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
