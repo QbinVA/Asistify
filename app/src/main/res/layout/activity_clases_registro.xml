@@ -67,7 +67,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/nombre_docente"
+                android:id="@+id/nombreDocente"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
@@ -80,7 +80,7 @@
                 android:textColorHint="@color/gris" />
 
             <EditText
-                android:id="@+id/nombre_clase"
+                android:id="@+id/nombreClase"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
@@ -106,7 +106,7 @@
                 android:textColorHint="@color/gris" />
 
             <EditText
-                android:id="@+id/id_crearClase"
+                android:id="@+id/codigoCC"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
