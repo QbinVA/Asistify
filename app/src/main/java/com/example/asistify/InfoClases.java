@@ -3,9 +3,6 @@ package com.example.asistify;
 public class InfoClases {
     private String docente, clase, materia, codigo;
 
-    public InfoClases(){
-
-    }
 
     public String getDocente() {
         return docente;
@@ -44,5 +41,9 @@ public class InfoClases {
         this.clase = clase;
         this.materia = materia;
         this.codigo = codigo;
+    }
+
+    public InfoClases(){
+
     }
 }
