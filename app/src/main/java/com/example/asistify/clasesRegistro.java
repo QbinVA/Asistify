@@ -41,6 +41,7 @@ public class clasesRegistro extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(clasesRegistro.this, menualumno.class);
                 startActivity(intent);
+                finish();
             }
         });
 

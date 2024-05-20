@@ -25,6 +25,7 @@ public class IniciarClase extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(IniciarClase.this, menualumno.class);
                 startActivity(intent);
+                finish();
             }
 
         });
