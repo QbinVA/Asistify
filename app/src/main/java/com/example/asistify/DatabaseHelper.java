@@ -1,39 +1,52 @@
 package com.example.asistify;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String LOGIN_ES = "myapp.db";
-    private static final int DATABASE_VERSION = 1;
-    private static final String INFO_ES = "users";
-    private static final String COLUMN_EMAIL = "email";
-    private static final String COLUMN_PASSWORD = "password";
+import androidx.annotation.Nullable;
 
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "login.db";
+    private static final String INFO_USUARIOS = "users";
+    private static final String COL_1 = "ID";
+    private static final String COL_2 = "EMAIL";
+    private static final String COL_3 = "PASSWORD";
 
     public DatabaseHelper(Context context) {
-        super(context, LOGIN_ES, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME,null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + INFO_ES + " ( " + COLUMN_EMAIL + " TEXT PRIMARY KEY, " + COLUMN_PASSWORD + " TEXT)";
-        db.execSQL(query);
-
+        db.execSQL("CREATE TABLE " + INFO_USUARIOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, EMAIL TEXT, PASSWORD TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + INFO_ES);
+        db.execSQL("DROP TABLE IF EXISTS " + INFO_USUARIOS);
         onCreate(db);
     }
 
-    public boolean checkUser (String email, String password){
+    public boolean insertData(String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, email);
+        contentValues.put(COL_3, password);
+        long result = db.insert(INFO_USUARIOS, null, contentValues);
+        return result != -1;
+    }
+
+    public boolean checkLogin(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + INFO_ES + " WHERE " + COLUMN_EMAIL + " =? AND " + COLUMN_PASSWORD + " =?", new String[]{email, password});
+        String[] columns = {COL_1};
+        String selection = COL_2 + " = ?" + " AND " + COL_3 + " = ?";
+        String[] selectionArgs = {email, password};
+        Cursor cursor = db.query(INFO_USUARIOS, columns, selection, selectionArgs, null, null, null);
         int count = cursor.getCount();
-        return count>0;
+        cursor.close();
+        return count > 0;
     }
 }
