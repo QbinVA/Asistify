@@ -52,6 +52,7 @@
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="8dp"
                 android:hint="Correo"
+                android:inputType="textEmailAddress"
                 android:textColorHint="@color/gris"
                 android:padding="8dp"
                 android:textColor="@color/black" />
@@ -65,6 +66,7 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:hint="Contraseña"
+                android:inputType="textPassword"
                 android:textColorHint="@color/gris"
                 android:padding="8dp"
                 android:textColor="@color/black" />
