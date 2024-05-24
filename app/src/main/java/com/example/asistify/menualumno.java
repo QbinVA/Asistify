@@ -1,25 +1,24 @@
 package com.example.asistify;
 
-<<<<<<< HEAD
+
 import android.annotation.SuppressLint;
 
-=======
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
-<<<<<<< HEAD
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
-=======
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -27,16 +26,15 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-<<<<<<< HEAD
 
 import com.google.android.material.navigation.NavigationView;
 
-=======
+
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,7 +42,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
+
 public class menualumno extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
@@ -216,4 +214,3 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 }
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
