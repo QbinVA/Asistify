@@ -78,8 +78,8 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         } else if (itemId == R.id.nav_settings) {
             selectedFragment = new SettingsFrag();
         } else if (itemId == R.id.usuario) {
-            selectedFragment = new UsuarioFragment();
-            Intent logoutIntent = new Intent(this, UsuarioFragment.class);
+            Intent intent = new Intent(this, MenuUser.class);
+            startActivity(intent);
         } else if (itemId == R.id.nav_out) {
             // Aquí manejas la lógica para cerrar sesión
             Intent logoutIntent = new Intent(this, loginActivity.class);

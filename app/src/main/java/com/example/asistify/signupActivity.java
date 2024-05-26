@@ -1,7 +1,9 @@
 package com.example.asistify;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +46,16 @@ public class signupActivity extends AppCompatActivity {
                 String name = signupName.getText().toString().trim();
                 String email = signupEmail.getText().toString().trim();
                 String password = signupPassword.getText().toString().trim();
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username", signupName.getText().toString()); // Guarda el correo electrónico
+                editor.putString("email", signupEmail.getText().toString()); // Guarda el correo electrónico
+                editor.putString("password", signupPassword.getText().toString()); // Guarda la contraseña
+                editor.apply();
+
+
+
 
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
                     Toast.makeText(signupActivity.this, "Por favor, llena todos los campos", Toast.LENGTH_SHORT).show();
