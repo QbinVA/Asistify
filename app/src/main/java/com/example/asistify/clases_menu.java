@@ -1,5 +1,6 @@
 package com.example.asistify;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ public class clases_menu extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("clases");
 
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 datalist.clear();

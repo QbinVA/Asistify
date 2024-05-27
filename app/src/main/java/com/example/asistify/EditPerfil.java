@@ -7,15 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class EditPerfil extends AppCompatActivity {
 
@@ -23,6 +27,7 @@ public class EditPerfil extends AppCompatActivity {
     Button savebtn;
     String nameuser, emailuser, passworduser;
     DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,63 +41,130 @@ public class EditPerfil extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         editname = findViewById(R.id.editname);
         editemail = findViewById(R.id.editEmail);
         editpassword = findViewById(R.id.editPassword);
 
-        showData();
-
-        Button saveButton = findViewById(R.id.savebtn);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+// Dentro de onCreate o un método donde se inicializan los EditTexts
+        editname.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if (isNameChanged() || isEmailChanged() || isPasswordChanged()){
-                    Toast.makeText(EditPerfil.this, "Guardado", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(EditPerfil.this, "Ups! Algo salio mal", Toast.LENGTH_SHORT).show();
-                }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Al detectar un cambio en el nombre, actualiza inmediatamente en Firebase
+                updateNameInFirebase(s.toString());
+            }
+        });
+
+        editemail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Al detectar un cambio en el correo electrónico, actualiza inmediatamente en Firebase
+                updateEmailInFirebase(s.toString());
+            }
+        });
+
+        editpassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // No necesitamos esta parte
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Al detectar un cambio en la contraseña, actualiza inmediatamente en Firebase
+                updatePasswordInFirebase(s.toString());
             }
         });
 
 
+
+
+        showData();
+
+        savebtn = findViewById(R.id.savebtn);
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNameChanged() || isEmailChanged() || isPasswordChanged()) {
+                    Toast.makeText(EditPerfil.this, "Guardado", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(EditPerfil.this, "Ups! Algo salió mal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
-    public boolean isNameChanged(){
-        if (!nameuser.equals(editname.getText().toString())){
-            databaseReference.child(nameuser).child("name").setValue(editname.getText().toString());
+    private void updateNameInFirebase(String newName) {
+        databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("name").setValue(newName);
+    }
+
+    private void updateEmailInFirebase(String newEmail) {
+        databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("email").setValue(newEmail);
+    }
+
+    private void updatePasswordInFirebase(String newPassword) {
+        databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("password").setValue(newPassword);
+    }
+
+
+    public boolean isNameChanged() {
+        if (!nameuser.equals(editname.getText().toString())) {
+            databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("name").setValue(editname.getText().toString());
             nameuser = editname.getText().toString();
             return true;
-
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean isEmailChanged(){
-        if (!emailuser.equals(editemail.getText().toString())){
-            databaseReference.child(nameuser).child("email").setValue(editemail.getText().toString());
+    public boolean isEmailChanged() {
+        if (!emailuser.equals(editemail.getText().toString())) {
+            databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("email").setValue(editemail.getText().toString());
             emailuser = editemail.getText().toString();
             return true;
-
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean isPasswordChanged(){
-        if (!passworduser.equals(editpassword.getText().toString())){
-            databaseReference.child(nameuser).child("password").setValue(editpassword.getText().toString());
+    public boolean isPasswordChanged() {
+        if (!passworduser.equals(editpassword.getText().toString())) {
+            databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("password").setValue(editpassword.getText().toString());
             passworduser = editpassword.getText().toString();
             return true;
-
-        }else{
+        } else {
             return false;
         }
     }
 
-    public void showData(){
+    public void showData() {
         Intent intent = getIntent();
 
         nameuser = intent.getStringExtra("name");
@@ -103,5 +175,4 @@ public class EditPerfil extends AppCompatActivity {
         editemail.setText(emailuser);
         editpassword.setText(passworduser);
     }
-
 }

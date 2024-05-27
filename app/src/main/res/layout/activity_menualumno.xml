@@ -48,9 +48,11 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/lavanda"
+            android:contentDescription="@string/todo"
             app:srcCompat="@android:drawable/ic_input_add"
             app:tint="@color/hueso"
-            android:backgroundTint="@color/lavanda" />
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

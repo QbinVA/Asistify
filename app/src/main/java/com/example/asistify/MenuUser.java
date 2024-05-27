@@ -18,6 +18,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,20 +75,18 @@ public class MenuUser extends AppCompatActivity {
     }
 
     public void passUserData() {
-        String userName = profileName.getText().toString().trim();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // Verificar si userName está vacío
-        if (!userName.isEmpty()) {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-            Query checkUserDatabase = reference.orderByChild("username").equalTo(userName);
+        if (userId != null) {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-            checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
-                        String namefromDB = snapshot.child(userName).child("name").getValue(String.class);
-                        String emailfromDB = snapshot.child(userName).child("email").getValue(String.class);
-                        String passwordfromDB = snapshot.child(userName).child("password").getValue(String.class);
+                    if (snapshot.exists()) {
+                        String namefromDB = snapshot.child("name").getValue(String.class);
+                        String emailfromDB = snapshot.child("email").getValue(String.class);
+                        String passwordfromDB = snapshot.child("password").getValue(String.class);
 
                         Intent intent = new Intent(MenuUser.this, EditPerfil.class);
                         intent.putExtra("name", namefromDB);
@@ -95,34 +94,20 @@ public class MenuUser extends AppCompatActivity {
                         intent.putExtra("password", passwordfromDB);
 
                         startActivity(intent);
-
                     } else {
-                        String namefromDB = snapshot.child(userName).child("name").getValue(String.class);
-                        String emailfromDB = snapshot.child(userName).child("email").getValue(String.class);
-                        String passwordfromDB = snapshot.child(userName).child("password").getValue(String.class);
-
-                        Intent intent = new Intent(MenuUser.this, EditPerfil.class);
-                        intent.putExtra("name", namefromDB);
-                        intent.putExtra("email", emailfromDB);
-                        intent.putExtra("password", passwordfromDB);
-
-                        startActivity(intent);
+                        Toast.makeText(MenuUser.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Manejar errores de Firebase si es necesario
                     Log.e("MenuUser", "Error en la consulta a Firebase: " + error.getMessage());
                 }
             });
         } else {
-            // Manejar el caso en que userName está vacío
-            // Por ejemplo, mostrar un mensaje al usuario
-            Toast.makeText(MenuUser.this, "Nombre de usuario vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MenuUser.this, "Usuario no autenticado", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
 }
