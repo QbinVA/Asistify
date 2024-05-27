@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +28,8 @@ public class clases_menu extends Fragment {
     List<InfoClases> datalist;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,25 +46,34 @@ public class clases_menu extends Fragment {
         MyAdapter adapter = new MyAdapter(requireContext(), datalist);
         recyclerView.setAdapter(adapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("clases");
+        // Inicializar FirebaseAuth y obtener el usuario actual
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
-        eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                datalist.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
-                    InfoClases infoClases = itemSnapshot.getValue(InfoClases.class);
-                    datalist.add(infoClases);
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId).child("clases");
+
+            eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    datalist.clear();
+                    for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                        InfoClases infoClases = itemSnapshot.getValue(InfoClases.class);
+                        datalist.add(infoClases);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Manejo de errores
+                }
+            });
+        } else {
+            // Manejo del caso donde el usuario no está autenticado
+        }
 
         return view;
     }
