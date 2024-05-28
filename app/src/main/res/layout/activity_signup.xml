@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
+        app:cardCornerRadius="32dp"
+        android:backgroundTint="@color/hueso"
         app:cardElevation="20dp">
 
         <LinearLayout
@@ -29,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/color_border"
-            android:backgroundTint="@color/hueso"
             android:orientation="vertical"
             android:padding="24dp">
 
@@ -64,6 +64,7 @@
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="8dp"
                 android:hint="Correo"
+                android:inputType="textEmailAddress"
                 android:textColorHint="@color/gris"
                 android:padding="8dp"
                 android:textColor="@color/black" />
