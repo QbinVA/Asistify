@@ -49,17 +49,24 @@ public class IniciarClase extends AppCompatActivity {
             }
         });
 
+        // Verificar si el intent tiene el código de la clase
+        Intent intent = getIntent();
+        String codigoClase = intent.getStringExtra("codigoClase");
+        if (codigoClase != null) {
+            codigoUC.setText(codigoClase); // Rellenar el campo de código de clase
+            unirseAClase(codigoClase); // Unirse a la clase automáticamente
+        }
+
         btnUnirClase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                unirseAClase();
+                String codigoClase = codigoUC.getText().toString().trim();
+                unirseAClase(codigoClase);
             }
         });
     }
 
-    private void unirseAClase() {
-        String codigoClase = codigoUC.getText().toString().trim();
-
+    private void unirseAClase(String codigoClase) {
         if (TextUtils.isEmpty(codigoClase)) {
             Toast.makeText(IniciarClase.this, "Por favor, ingrese el código de la clase", Toast.LENGTH_SHORT).show();
             return;
