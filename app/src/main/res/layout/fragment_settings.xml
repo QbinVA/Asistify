@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment">
+=======
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsFrag">
+>>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:text="Settings Fragmnet"
+        android:textSize="30sp"
+        android:layout_centerInParent="true"
+        android:textColor="@color/lavender"
+        />
+
+</RelativeLayout>
+=======
         android:layout_gravity="center"
         android:text="Ajustes"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
 </FrameLayout>
+>>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a

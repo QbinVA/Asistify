@@ -39,6 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".menualumno"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".signupActivity"
