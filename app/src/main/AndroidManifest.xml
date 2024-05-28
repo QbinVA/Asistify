@@ -22,6 +22,9 @@
         android:theme="@style/Theme.Design.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ListAsistencia"
+            android:exported="false" />
+        <activity
             android:name=".MenuUser"
             android:exported="false" />
         <activity android:name=".EditPerfil" />
@@ -35,13 +38,7 @@
             android:name=".clasesRegistro"
             android:exported="false" />
         <activity
-            android:name=".activity_registro"
-            android:exported="false" />
-        <activity
             android:name=".menualumno"
-            android:exported="false" />
-        <activity
-            android:name=".loginalumno"
             android:exported="false" />
         <activity
             android:name=".signupActivity"
