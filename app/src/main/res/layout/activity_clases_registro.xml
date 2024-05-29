@@ -45,15 +45,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
+        app:cardCornerRadius="32dp"
         app:cardElevation="20dp"
+        android:backgroundTint="@color/hueso"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/color_border"
-            android:backgroundTint="@color/hueso"
             android:orientation="vertical"
             android:padding="24dp">
 

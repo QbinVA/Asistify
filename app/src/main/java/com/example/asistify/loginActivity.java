@@ -1,7 +1,9 @@
 package com.example.asistify;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +34,7 @@ public class loginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +58,8 @@ public class loginActivity extends AppCompatActivity {
                         });
             }
         });
+
+
 
         signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override

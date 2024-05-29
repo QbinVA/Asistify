@@ -1,8 +1,16 @@
 package com.example.asistify;
 
 public class InfoClases {
-    private String docente, clase, materia, codigo;
+    private String docente, clase, materia, codigo, userId;
 
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getDocente() {
         return docente;
@@ -36,8 +44,9 @@ public class InfoClases {
         this.codigo = codigo;
     }
 
-    public InfoClases(String docente, String clase, String materia, String codigo) {
+    public InfoClases(String docente, String clase, String materia, String codigo, String userId) {
         this.docente = docente;
+        this.userId = userId;
         this.clase = clase;
         this.materia = materia;
         this.codigo = codigo;
