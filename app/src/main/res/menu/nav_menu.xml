@@ -1,69 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
     tools:showIn="navigation_view">
-=======
-    tools:showIn = "navigation_view">
-
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
 
     <group
         android:checkableBehavior="single">
 
+
         <item
-<<<<<<< HEAD
+            android:id="@+id/usuario"
+            android:icon="@drawable/baseline_account_circle_24"
+            android:title="Usuario" />
+
+        <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/nav_home"
+            android:icon="@drawable/sharp_home_24"
             android:title="Home" />
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/nav_settings"
+            android:icon="@drawable/baseline_info_outline_24"
             android:title="Settings" />
 
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/nav_share"
-            android:title="Share" />
-
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/nav_about"
-            android:title="About Us" />
-=======
-            android:id="@+id/usuario"
-            android:icon="@drawable/baseline_account_circle_24"
-            android:title="Usuario"
-            android:iconTint="@color/gris"/>
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/sharp_home_24"
-            android:title="Clases"
-            android:iconTint="@color/gris"/>
-
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/baseline_more_vert_24"
-            android:title="Settings"
-            android:iconTint="@color/gris"/>
-
-
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
 
     </group>
 
     <item
-<<<<<<< HEAD
         android:id="@+id/other_menu"
-        android:title="">
-        <menu>
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/nav_logout"
-                android:title="Logout" />
-        </menu>
-=======
         android:title="">
 
         <menu>
@@ -74,6 +37,5 @@
                 android:iconTint="@color/gris"/>
         </menu>
 
->>>>>>> b5d0825bda95d041801c5265e1d419218fa3c52a
     </item>
 </menu>
