@@ -44,7 +44,7 @@ public class InfoClases {
         this.codigo = codigo;
     }
 
-    public InfoClases(String docente, String clase, String materia, String codigo) {
+    public InfoClases(String docente, String clase, String materia, String codigo, String userId) {
         this.docente = docente;
         this.userId = userId;
         this.clase = clase;

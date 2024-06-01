@@ -66,7 +66,8 @@ public class clasesRegistro extends AppCompatActivity {
         if (user != null) {
             String userId = user.getUid(); // Obtener el UID del usuario
 
-            InfoClases infoClases = new InfoClases(docente, clase, materia, codigo);
+            // Crear una nueva instancia de InfoClases incluyendo el userId
+            InfoClases infoClases = new InfoClases(docente, clase, materia, codigo, userId);
 
             // Usar el UID del usuario como parte de la referencia en la base de datos
             FirebaseDatabase.getInstance().getReference("clases").child(codigo)
@@ -75,6 +76,10 @@ public class clasesRegistro extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(clasesRegistro.this, "Clase Creada", Toast.LENGTH_SHORT).show();
+                                // Iniciar automáticamente la clase
+                                Intent intent = new Intent(clasesRegistro.this, IniciarClase.class);
+                                intent.putExtra("codigoClase", codigo); // Pasar el código de la clase a IniciarClase
+                                startActivity(intent);
                                 finish();
                             }
                         }
