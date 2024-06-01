@@ -8,8 +8,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/pagebkg2"
+    android:background="@drawable/menuuser"
     tools:context=".EditPerfil">
+
 
 
     <androidx.cardview.widget.CardView
@@ -17,7 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        android:background="@drawable/color_border"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +29,8 @@
             android:background="@drawable/color_border"
             android:backgroundTint="@color/hueso"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="24dp"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,9 +50,9 @@
                 android:drawableLeft="@drawable/baseline_account_circle_24"
                 android:drawablePadding="8dp"
                 android:hint="Nombre"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/editEmail"
@@ -60,9 +64,9 @@
                 android:drawablePadding="8dp"
                 android:hint="Correo"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/editPassword"
@@ -73,9 +77,9 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:hint="Contraseña"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <Button
                 android:id="@+id/savebtn"
@@ -86,8 +90,6 @@
                 android:text="Guardar"
                 android:textColor="@color/hueso"
                 android:textSize="18sp" />
-
-
 
 
         </LinearLayout>

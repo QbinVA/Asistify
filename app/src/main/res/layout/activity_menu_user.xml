@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuUser"
-    android:background="@drawable/pagebkg2"
+    android:background="@drawable/menuuser"
     >
 
     <FrameLayout
@@ -18,19 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHeight_default="wrap" />
 
+
     <ImageView
         android:id="@+id/perfilusu"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="165dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="90dp"
         android:src="@drawable/perfil1"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -42,10 +45,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="180dp"
         android:background="@drawable/white_background"
+
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
@@ -183,4 +188,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

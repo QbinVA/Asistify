@@ -48,7 +48,23 @@ public class EditPerfil extends AppCompatActivity {
         editemail = findViewById(R.id.editEmail);
         editpassword = findViewById(R.id.editPassword);
 
-// Dentro de onCreate o un método donde se inicializan los EditTexts
+        showData();
+
+        savebtn = findViewById(R.id.savebtn);
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNameChanged() || isEmailChanged() || isPasswordChanged()) {
+                    Toast.makeText(EditPerfil.this, "Datos guardados correctamente", Toast.LENGTH_SHORT).show();
+                    // Llama al método para volver a menualumno
+                    returnToMenuAlumno();
+                } else {
+                    Toast.makeText(EditPerfil.this, "Ups! Algo salió mal", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         editname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,17 +86,17 @@ public class EditPerfil extends AppCompatActivity {
         editemail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No necesitamos esta parte
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // No necesitamos esta parte
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Al detectar un cambio en el correo electrónico, actualiza inmediatamente en Firebase
+
                 updateEmailInFirebase(s.toString());
             }
         });
@@ -88,12 +104,12 @@ public class EditPerfil extends AppCompatActivity {
         editpassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No necesitamos esta parte
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // No necesitamos esta parte
+
             }
 
             @Override
@@ -103,23 +119,17 @@ public class EditPerfil extends AppCompatActivity {
             }
         });
 
-
-
-
-        showData();
-
-        savebtn = findViewById(R.id.savebtn);
-        savebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isNameChanged() || isEmailChanged() || isPasswordChanged()) {
-                    Toast.makeText(EditPerfil.this, "Guardado", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(EditPerfil.this, "Ups! Algo salió mal", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
+    private void returnToMenuAlumno() {
+        Intent intent = new Intent(EditPerfil.this, menualumno.class);
+        // Puedes pasar datos actualizados si es necesario
+        intent.putExtra("name", editname.getText().toString());
+        intent.putExtra("email", editemail.getText().toString());
+        intent.putExtra("password", editpassword.getText().toString());
+        startActivity(intent);
+        finish();
+    }
+
 
     private void updateNameInFirebase(String newName) {
         databaseReference.child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()).child("name").setValue(newName);
@@ -176,3 +186,4 @@ public class EditPerfil extends AppCompatActivity {
         editpassword.setText(passworduser);
     }
 }
+
