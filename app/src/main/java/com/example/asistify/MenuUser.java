@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.asistify.EditPerfil;
+import com.example.asistify.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +31,8 @@ public class MenuUser extends AppCompatActivity {
 
     TextView profileName, profileEmail, profilePassword;
     Button editbtn;
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,10 +47,14 @@ public class MenuUser extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
         profileName = findViewById(R.id.profilename);
         profileEmail = findViewById(R.id.profileEmail);
         profilePassword = findViewById(R.id.profilePassword);
         editbtn = findViewById(R.id.editbtn);
+
         showUserDB();
 
         editbtn.setOnClickListener(new View.OnClickListener() {
@@ -55,74 +63,73 @@ public class MenuUser extends AppCompatActivity {
                 passUserData();
             }
         });
-
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showUserDB();
+    }
 
     public void showUserDB() {
-        Intent intent = getIntent();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String userName = preferences.getString("username", ""); // "" es el valor predeterminado si no se encuentra ninguna preferencia
-        String userEmail = preferences.getString("email", "");
-        String userPassword = preferences.getString("password", "");
+        String userId = mAuth.getCurrentUser().getUid();
 
-        // Mostrar los datos del usuario en los TextViews correspondientes
-        profileName.setText(userName);
-        profileEmail.setText(userEmail);
-        profilePassword.setText(userPassword);
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String name = snapshot.child("name").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String password = snapshot.child("password").getValue(String.class);
+
+                    profileName.setText(name);
+                    profileEmail.setText(email);
+                    profilePassword.setText(password);
+
+                    // Guardar datos en SharedPreferences
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MenuUser.this);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("username", name);
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.apply();
+                } else {
+                    Toast.makeText(MenuUser.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MenuUser.this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void passUserData() {
-        String userName = profileName.getText().toString().trim();
+        String userId = mAuth.getCurrentUser().getUid();
 
-        // Verificar si userName está vacío
-        if (!userName.isEmpty()) {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-            Query checkUserDatabase = reference.orderByChild("username").equalTo(userName);
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String name = snapshot.child("name").getValue(String.class);
+                    String email = snapshot.child("email").getValue(String.class);
+                    String password = snapshot.child("password").getValue(String.class);
 
-            checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
-                        String namefromDB = snapshot.child(userName).child("name").getValue(String.class);
-                        String emailfromDB = snapshot.child(userName).child("email").getValue(String.class);
-                        String passwordfromDB = snapshot.child(userName).child("password").getValue(String.class);
-
-                        Intent intent = new Intent(MenuUser.this, EditPerfil.class);
-                        intent.putExtra("name", namefromDB);
-                        intent.putExtra("email", emailfromDB);
-                        intent.putExtra("password", passwordfromDB);
-
-                        startActivity(intent);
-
-                    } else {
-                        String namefromDB = snapshot.child(userName).child("name").getValue(String.class);
-                        String emailfromDB = snapshot.child(userName).child("email").getValue(String.class);
-                        String passwordfromDB = snapshot.child(userName).child("password").getValue(String.class);
-
-                        Intent intent = new Intent(MenuUser.this, EditPerfil.class);
-                        intent.putExtra("name", namefromDB);
-                        intent.putExtra("email", emailfromDB);
-                        intent.putExtra("password", passwordfromDB);
-
-                        startActivity(intent);
-                    }
+                    Intent intent = new Intent(MenuUser.this, EditPerfil.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MenuUser.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Manejar errores de Firebase si es necesario
-                    Log.e("MenuUser", "Error en la consulta a Firebase: " + error.getMessage());
-                }
-            });
-        } else {
-            // Manejar el caso en que userName está vacío
-            // Por ejemplo, mostrar un mensaje al usuario
-            Toast.makeText(MenuUser.this, "Nombre de usuario vacío", Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MenuUser.this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-
-
 }

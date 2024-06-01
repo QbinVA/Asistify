@@ -11,9 +11,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class loginActivity extends AppCompatActivity {
 
@@ -21,6 +29,7 @@ public class loginActivity extends AppCompatActivity {
     Button loginButton;
     TextView signupRedirectText;
     FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,7 @@ public class loginActivity extends AppCompatActivity {
         signupRedirectText = findViewById(R.id.signupRedirectText);
 
         mAuth = FirebaseAuth.getInstance();
-
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,17 +58,44 @@ public class loginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                Toast.makeText(loginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(loginActivity.this, menualumno.class));
-                                finish();
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    String userId = user.getUid();
+                                    databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists()) {
+                                                String name = dataSnapshot.child("name").getValue(String.class);
+                                                String email = dataSnapshot.child("email").getValue(String.class);
+                                                String password = dataSnapshot.child("password").getValue(String.class);
+
+                                                // Guardar datos en SharedPreferences
+                                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(loginActivity.this);
+                                                SharedPreferences.Editor editor = preferences.edit();
+                                                editor.putString("username", name);
+                                                editor.putString("email", email);
+                                                editor.putString("password", password);
+                                                editor.apply();
+
+                                                // Redirigir a MenuUser
+                                                Toast.makeText(loginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(loginActivity.this, menualumno.class));
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            Toast.makeText(loginActivity.this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
                             } else {
                                 Toast.makeText(loginActivity.this, "Error en el inicio de sesión: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
         });
-
-
 
         signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
