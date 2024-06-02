@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="230dp"
             android:layout_height="50dp"
-            android:id="@+id/recMateria"
+            android:id="@+id/recClase"
             android:text="Materia"
             android:textColor="@color/black"
             android:textSize="23sp"

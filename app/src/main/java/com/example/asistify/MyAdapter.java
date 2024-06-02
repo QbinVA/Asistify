@@ -44,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.recMateria.setText(dataList.get(position).getMateria());
+        holder.recClase.setText(dataList.get(position).getClase());
         holder.recDocente.setText(dataList.get(position).getDocente());
 
         holder.recCard.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +103,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 class MyViewHolder extends RecyclerView.ViewHolder{
 
-    TextView recMateria, recDocente;
+    TextView recClase, recDocente;
     CardView recCard;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        recMateria = itemView.findViewById(R.id.recMateria);
+        recClase = itemView.findViewById(R.id.recClase);
         recDocente = itemView.findViewById(R.id.recDocente);
         recCard = itemView.findViewById(R.id.recCard);
     }
