@@ -1,14 +1,16 @@
 <resources>
-    <string name="app_name">asistify</string>
+    <string name="app_name">Asistify</string>
     <string name="mostrar_di_logo">Mostrar Diálogo</string>
     <string name="unirse_a_una_clase">Unirse a una clase</string>
-    <string name="unirse_di_logo" />
-    <string name="unirse" />
     <string name="crearclase">Crear una clase</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+        <!-- Otros recursos de cadena -->
+    <string name="todo">Texto para ToDo</string>
+    <string name="delete_class">Eliminar clase</string>
+
 
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

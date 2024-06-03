@@ -10,14 +10,39 @@
     android:orientation="vertical"
     tools:context=".DetallesClase">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/dNombre"
+        android:text="Nombre de la clase"
+        android:layout_marginTop="60dp"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dCodigo"
+        android:text="Código de la clase"
+        android:layout_marginTop="200dp"
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black" />
+
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:id="@+id/asistencia"
         android:text="Registrar asistencia"
+        android:textSize="24sp"
+        android:background="@drawable/button_styles"
         android:backgroundTint="@color/green"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="300dp" />
+        android:layout_marginTop="10dp"
+        android:elegantTextHeight="true"
+        android:elevation="@dimen/cardview_default_elevation"/>
 
 
 </LinearLayout>

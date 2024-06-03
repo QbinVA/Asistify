@@ -1,38 +1,36 @@
 package com.example.asistify;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private Context context;
     private List<InfoClases> dataList;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     public MyAdapter(Context context, List<InfoClases> dataList) {
         this.context = context;
         this.dataList = dataList;
-        mAuth = FirebaseAuth.getInstance(); // Inicializar FirebaseAuth aquí
+        this.mAuth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -43,55 +41,64 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.recClase.setText(dataList.get(position).getClase());
-        holder.recDocente.setText(dataList.get(position).getDocente());
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        InfoClases infoClase = dataList.get(position);
+        holder.recClase.setText(infoClase.getClase());
+        holder.recDocente.setText(infoClase.getDocente());
 
-        holder.recCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    String currentUser = user.getUid(); // Obtener el UID del usuario actual
+        holder.recCard.setOnClickListener(v -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user != null) {
+                String currentUser = user.getUid();
+                String claseCodigo = infoClase.getCodigo();
+                DatabaseReference claseRef = FirebaseDatabase.getInstance().getReference("clases").child(claseCodigo);
 
-                    // Obtener el userId del creador de la clase desde dataList
-                    String claseCodigo = dataList.get(position).getCodigo(); // Suponiendo que tienes un método getCodigo()
-                    DatabaseReference claseRef = FirebaseDatabase.getInstance().getReference("clases").child(claseCodigo);
-
-                    claseRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                InfoClases infoClases = snapshot.getValue(InfoClases.class);
-                                if (infoClases != null) {
-                                    String userId = infoClases.getUserId(); // Obtener el userId del creador de la clase
-
-                                    // Comparar userId con el UID del usuario actual
-                                    if (currentUser.equals(userId)) {
-                                        Intent intent = new Intent(context, ListAsistencia.class);
-                                        context.startActivity(intent);
-                                    } else {
-                                        Intent intent = new Intent(context, DetallesClase.class);
-                                        context.startActivity(intent);
-                                    }
-                                }
-                            } else {
-                                // Manejar el caso en el que la clase no existe
-                                Toast.makeText(context, "Clase no encontrada", Toast.LENGTH_SHORT).show();
-                            }
+                claseRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        InfoClases claseInfo = task.getResult().getValue(InfoClases.class);
+                        if (claseInfo != null && currentUser.equals(claseInfo.getUserId())) {
+                            Intent intent = new Intent(context, ListAsistencia.class);
+                            context.startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(context, DetallesClase.class);
+                            intent.putExtra("NombreClase", infoClase.getClase());
+                            intent.putExtra("Codigo", infoClase.getCodigo());
+                            context.startActivity(intent);
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            // Manejar error de la base de datos
-                            Toast.makeText(context, "Error al obtener datos de la clase", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    // Manejar el caso donde el usuario no está autenticado
-                    Toast.makeText(context, "Usuario no autenticado", Toast.LENGTH_SHORT).show();
-                }
+                    } else {
+                        Toast.makeText(context, "Clase no encontrada", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                Toast.makeText(context, "Usuario no autenticado", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        holder.btnDeleteClass.setOnClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Eliminar Clase")
+                    .setMessage("¿Estás seguro de que deseas eliminar esta clase?")
+                    .setPositiveButton("Sí", (dialog, which) -> {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            String userId = user.getUid();
+                            String claseCodigo = infoClase.getCodigo();
+                            DatabaseReference userClaseRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("clases").child(claseCodigo);
+
+                            userClaseRef.removeValue().addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    dataList.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position, dataList.size());
+                                    Toast.makeText(context, "Clase eliminada", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "Error al eliminar la clase", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
         });
     }
 
@@ -99,18 +106,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public int getItemCount() {
         return dataList.size();
     }
-}
 
-class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView recClase, recDocente;
+        CardView recCard;
+        ImageButton btnDeleteClass;
 
-    TextView recClase, recDocente;
-    CardView recCard;
-
-    public MyViewHolder(@NonNull View itemView) {
-        super(itemView);
-
-        recClase = itemView.findViewById(R.id.recClase);
-        recDocente = itemView.findViewById(R.id.recDocente);
-        recCard = itemView.findViewById(R.id.recCard);
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            recClase = itemView.findViewById(R.id.recClase);
+            recDocente = itemView.findViewById(R.id.recDocente);
+            recCard = itemView.findViewById(R.id.recCard);
+            btnDeleteClass = itemView.findViewById(R.id.btnDeleteClass);
+        }
     }
 }
