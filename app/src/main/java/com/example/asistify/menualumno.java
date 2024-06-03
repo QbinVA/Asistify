@@ -1,5 +1,6 @@
 package com.example.asistify;
 
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
+
 public class menualumno extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
@@ -34,13 +36,22 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menualumno);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new clases_menu()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -76,7 +87,7 @@ public class menualumno extends AppCompatActivity implements NavigationView.OnNa
         if (itemId == R.id.nav_home) {
             selectedFragment = new clases_menu();
         } else if (itemId == R.id.nav_settings) {
-            selectedFragment = new SettingsFrag();
+            
         } else if (itemId == R.id.usuario) {
             Intent intent = new Intent(this, MenuUser.class);
             startActivity(intent);

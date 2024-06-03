@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">asistify</string>
+    <string name="mostrar_di_logo">Mostrar Diálogo</string>
+    <string name="unirse_a_una_clase">Unirse a una clase</string>
+    <string name="unirse_di_logo" />
+    <string name="unirse" />
+    <string name="crearclase">Crear una clase</string>
     <string name="open_nav">Open Navigation Drawer</string>
-    <string name="close_nav">Cloase Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,5 +21,5 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="todo">TODO</string>
+
 </resources>
