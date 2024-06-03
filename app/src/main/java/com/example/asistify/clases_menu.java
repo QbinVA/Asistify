@@ -41,11 +41,9 @@ public class clases_menu extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         datalist = new ArrayList<>();
-
         MyAdapter adapter = new MyAdapter(requireContext(), datalist);
         recyclerView.setAdapter(adapter);
 
-        // Inicializar FirebaseAuth y obtener el usuario actual
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 

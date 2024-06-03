@@ -8,16 +8,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/pagebkg2"
+    android:background="@drawable/menuuser"
     tools:context=".EditPerfil">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/perfilusu"
+        android:layout_width="200dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/lavanda"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/circular"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:strokeColor="@color/lavanda"
+        app:strokeWidth="4dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/selectImageBtn"
+        android:layout_width="192dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_styles"
+        android:text="Editar Imagen"
+        android:textColor="@color/hueso"
+        tools:ignore="HardcodedText"
+
+        />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        android:background="@drawable/color_border"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +59,8 @@
             android:background="@drawable/color_border"
             android:backgroundTint="@color/hueso"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="24dp"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -46,9 +80,9 @@
                 android:drawableLeft="@drawable/baseline_account_circle_24"
                 android:drawablePadding="8dp"
                 android:hint="Nombre"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/editEmail"
@@ -60,9 +94,9 @@
                 android:drawablePadding="8dp"
                 android:hint="Correo"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <EditText
                 android:id="@+id/editPassword"
@@ -73,9 +107,9 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:hint="Contraseña"
-                android:textColorHint="@color/gris"
                 android:padding="8dp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/gris" />
 
             <Button
                 android:id="@+id/savebtn"
@@ -86,8 +120,6 @@
                 android:text="Guardar"
                 android:textColor="@color/hueso"
                 android:textSize="18sp" />
-
-
 
 
         </LinearLayout>

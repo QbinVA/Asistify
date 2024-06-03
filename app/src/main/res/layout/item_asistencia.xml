@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal"
+    android:background="@color/hueso">
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="Nombre"/>
+
+    <TextView
+        android:id="@+id/textViewCorreo"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="Correo"/>
+
+    <TextView
+        android:id="@+id/textViewFecha"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:text="Fecha"/>
+</LinearLayout>
